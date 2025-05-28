@@ -6,6 +6,7 @@
 #include "Map.h"
 #include "Sort.h"
 #include "queue"
+#include "Heap.h"
 int main()
 {
 	/*Map<int, char> map;
@@ -24,13 +25,33 @@ int main()
 	//int array[10] = { 1, 10, 5, 8, 7, 6, 4, 3, 2, 9 };
 	char array[10] = { 'd', 'c', 'z', 'h', 'e', 'a', 'r', 'b', 'f', 'j' };
 	int arr_size = 10;
-	Sort::RadixSort_Array(array, arr_size);
-
+	Sort::HeapSort::Sort<char, Sort::HeapSort::HeapType::MAX>(array, arr_size);
+	
 	for (int i = 0; i < 10; i++)
 		cout << array[i] << " ";
 	cout << endl;
+	/*Heap<int, Sort::HeapSort::HeapType::MIN> heap;
+	heap.Push(1);
+	heap.Push(10);
+	heap.Push(5);
+	heap.Push(6);
+	heap.Push(7);
+	heap.Push(6);
+	heap.Push(4);
+	heap.Push(3);
+	heap.Push(2);
+	heap.Push(9);
 
-	
+	heap.Pop();
+	heap.Pop();
+	heap.Pop();
+	heap.Pop();
+	heap.Pop();
+	heap.Pop();
+	heap.Pop();
+	heap.Pop();
+	heap.Pop();
+	heap.Pop();*/
 	return 0;
 }
 

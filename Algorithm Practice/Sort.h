@@ -200,12 +200,91 @@ namespace Sort
 			
 		}
 	}
+
+
 	template<typename T>
 	void RadixSort_Array(T* arr, int size)
 	{
 		int max = Math::Max(arr, size);
 		Radix::Sort(arr, size, max);
 
+	}
+
+	namespace HeapSort
+	{
+		enum HeapType : int
+		{
+			MAX = 0,
+			MIN = 1,
+		};
+		template<typename T>
+		void Swap(T* arr, int index, int index2)
+		{
+			T temp = arr[index];
+			arr[index] = arr[index2];
+			arr[index2] = temp;
+
+		}
+		template<typename T, HeapType type>
+		void Heapify(T* arr, int n, int current)
+		{
+			int cur_idx = current;
+			int left = (current * 2) + 1;
+			int right = current * 2 + 2;
+			
+			if (type == HeapType::MAX) //최대힙이다
+			{
+				if (left <= n && arr[left] > arr[cur_idx])
+				{
+					cur_idx = left;
+				}
+				else if (right <= n && arr[right] > arr[cur_idx])
+				{
+					cur_idx = right;
+				}
+
+				if (cur_idx == current) //바뀌지 않았다
+					return;
+				Swap(arr, current, cur_idx);
+				Heapify<T, type>(arr, n, cur_idx);
+			}
+			else //최소힙이다
+			{
+				if (left <= n && arr[left] < arr[cur_idx])
+				{
+					cur_idx = left;
+				}
+				else if (right <= n && arr[right] < arr[cur_idx])
+				{
+					cur_idx = right;
+				}
+
+				if (cur_idx == current) //바뀌지 않았다
+					return;
+				Swap(arr, current, cur_idx);
+				Heapify<T, type>(arr, n, cur_idx);
+			}
+		}
+		
+		template<typename T, HeapType type>
+		void SetHeap(T* arr, int size)
+		{
+			int max_parent_index = ((size - 1) - 1) / 2;
+			for (int i = max_parent_index; i >= 0; i--)
+			{
+				Heapify<T, type>(arr, size - 1, i);
+			}
+		}
+		template<typename T, HeapType type>
+		void Sort(T* arr, int size)
+		{
+			SetHeap<T, type>(arr, size);
+			for (int i = size - 1; i >= 1; i--)
+			{
+				Swap(arr, i, 0);
+				Heapify<T, type>(arr,i - 1, 0);
+			}
+		}
 	}
 }
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "pch.h"
+#include "Sort.h"
 
 template<typename T>
 class Queue
@@ -8,17 +9,17 @@ class Queue
 	{
 		SIZE = 10,
 	};
-private:
+protected:
 	T* arr;
 	int size;
 	int capacity;
 
 public:
 	Queue();
-	~Queue();
+	virtual ~Queue();
 
-	void Push_Back(const T& value);
-	void Pop_Front();
+	virtual void Push_Back(const T& value);
+	virtual void Pop_Front();
 	T Front();
 	int Size() { return size; }
 	int Capacity() { return capacity; }
@@ -73,4 +74,25 @@ inline void Queue<T>::Resize(int size)
 	delete arr;
 	arr = newArr;
 	capacity = size;
+}
+
+template<typename T, Sort::HeapSort::HeapType type>
+class Priority_Queue : public Queue
+{
+public:
+	Priority_Queue() {}
+	virtual ~Priority_Queue() {}
+
+	virtual void Push_Back(const T& value) override;
+	virtual void Pop_Front() override;
+};
+
+template<typename T, Sort::HeapSort::HeapType type>
+inline void Priority_Queue<T, type>::Push_Back(const T& value)
+{
+}
+
+template<typename T, Sort::HeapSort::HeapType type>
+inline void Priority_Queue<T, type>::Pop_Front()
+{
 }

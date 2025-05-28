@@ -41,7 +41,7 @@ private:
 	shared_ptr<Node> RightRotate(shared_ptr<Node> node);
 	void InsertFix(shared_ptr<Node> node);
 	void InsertNode(shared_ptr<Node> node, const T& data);
-	void InorderTraversal(shared_ptr<Node> node, string* stringBuilder, string padding, const string& pointer, const bool hasRightChild) const;
+	void PrintAll(shared_ptr<Node> node, string* stringBuilder, string padding, const string& pointer, const bool hasRightChild) const;
 	string ShowTree(shared_ptr<Node> node);
 public:
 	RBTree() : numOfElement(0), nil(std::make_shared<Node>(-1, Color::Black)), root(nullptr) {
@@ -221,7 +221,7 @@ void RBTree<T>::InsertNode(shared_ptr<Node> node, const T& data)
 }
 
 template<typename T>
-void RBTree<T>::InorderTraversal(shared_ptr<Node> node, string* stringBuilder, string padding, const string& pointer, const bool hasRightChild) const
+void RBTree<T>::PrintAll(shared_ptr<Node> node, string* stringBuilder, string padding, const string& pointer, const bool hasRightChild) const
 {
 }
 

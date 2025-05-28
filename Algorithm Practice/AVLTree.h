@@ -26,14 +26,14 @@ public:
 
 	void Insert(T value);
 	void Erase(T value);
-	void InorderTraversal();
+	void PrintAll();
 
 private:
 	std::shared_ptr<AVLTreeNode> LeftRotate(std::shared_ptr<AVLTreeNode> root);
 	std::shared_ptr<AVLTreeNode> RightRotate(std::shared_ptr<AVLTreeNode> root);
 	std::shared_ptr<AVLTreeNode> Insert(std::shared_ptr<AVLTreeNode> node, T value);
 	void Erase(std::shared_ptr<AVLTreeNode> node, T value);
-	void InorderTraversal(std::shared_ptr<AVLTreeNode> node);
+	void PrintAll(std::shared_ptr<AVLTreeNode> node);
 };
 
 
@@ -74,9 +74,9 @@ void AVLTree<T>::Erase(T value)
 }
 
 template<typename T>
-void AVLTree<T>::InorderTraversal()
+void AVLTree<T>::PrintAll()
 {
-	InorderTraversal(root);
+	PrintAll(root);
 	std::cout << std::endl;
 }
 
@@ -171,7 +171,7 @@ void AVLTree<T>::Erase(std::shared_ptr<AVLTreeNode> node, T value)
 }
 
 template<typename T>
-void AVLTree<T>::InorderTraversal(std::shared_ptr<AVLTreeNode> node)
+void AVLTree<T>::PrintAll(std::shared_ptr<AVLTreeNode> node)
 {
 	if (node == nullptr)
 		return;
