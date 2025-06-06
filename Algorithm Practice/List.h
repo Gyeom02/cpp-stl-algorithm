@@ -14,7 +14,7 @@ private:
 		T data;
 		std::shared_ptr<Node> _head;
 		std::shared_ptr<Node> _tail;
-		Node(T _data = -1) : _head(nullptr), _tail(nullptr), data(_data) {}
+		Node(T _key = -1) : _head(nullptr), _tail(nullptr), data(_key) {}
 	};
 	std::shared_ptr<Node> head; // head->_tail == root == begin()
 	std::shared_ptr<Node> end; //

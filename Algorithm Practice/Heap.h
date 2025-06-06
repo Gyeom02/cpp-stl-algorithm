@@ -3,7 +3,7 @@
 #include "Sort.h"
 
 
-template<typename T, Sort::HeapSort::HeapType type>
+template<typename T, Sort::HeapSort::HeapType type = Sort::HeapSort::MAX>
 class Heap
 {
 private:

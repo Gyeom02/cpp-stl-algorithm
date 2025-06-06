@@ -64,7 +64,7 @@ void AVLTree<T>::UpdateHeight(std::shared_ptr<AVLTreeNode> node)
 template<typename T>
 void AVLTree<T>::Insert(T value)
 {
-	Insert(root, value);
+	root = Insert(root, value);
 }
 
 template<typename T>

@@ -1,10 +1,24 @@
 #pragma once
 #include "pch.h"
 #include "Math.h"
-#include "Queue.h"
+#include <queue>
+
+// Ctrl + F & Search below types
+// SelectSort = Select__
+// BubbleSort = Bubble__
+// InsertSort = Insert__
+// QuickSort = Quick__
+// MergeSort = Merge__
+// RadixSort = Radix__
+// HeapSort = Heap__
+
 
 namespace Sort
 {
+
+	
+	///  Select__
+	
 	template<typename T>
 	void SelectSort_Array(T* arr, int size) //size means array value num
 	{
@@ -25,6 +39,9 @@ namespace Sort
 		}
 	}
 
+
+	///  Bubble__
+
 	template<typename T>
 	void BubbleSort_Array(T* arr, int size)
 	{
@@ -44,7 +61,9 @@ namespace Sort
 		}
 		
 	}
-	
+
+	///  Insert__
+
 	template<typename T>
 	void InsertSort_Array(T* arr, int size)
 	{
@@ -64,6 +83,9 @@ namespace Sort
 			}
 		}
 	}
+
+
+	///  Quick__
 
 	namespace QuickSort
 	{
@@ -107,6 +129,8 @@ namespace Sort
 		QuickSort::Func_QuickSort(array, 0, size - 1);
 	}
 	
+
+	///  Merge__
 
 
 	namespace Merge
@@ -155,12 +179,15 @@ namespace Sort
 		mergeArr = nullptr;
 	}
 
+
+	///  Radix__
+
 	namespace Radix
 	{
 		template<typename T>
 		void Sort(T* arr, int size, int max)
 		{
-			Queue<T> Q[10];
+			queue<T> Q[10];
 			int radix = 1;
 			while (true)
 			{
@@ -210,12 +237,15 @@ namespace Sort
 
 	}
 
+	///  Heap__
+
 	namespace HeapSort
 	{
 		enum HeapType : int
 		{
 			MAX = 0,
 			MIN = 1,
+			UNORDERED = 2,
 		};
 		template<typename T>
 		void Swap(T* arr, int index, int index2)
@@ -225,7 +255,7 @@ namespace Sort
 			arr[index2] = temp;
 
 		}
-		template<typename T, HeapType type>
+		template<typename T, HeapType type = HeapType::UNORDERED>
 		void Heapify(T* arr, int n, int current)
 		{
 			int cur_idx = current;
@@ -238,7 +268,7 @@ namespace Sort
 				{
 					cur_idx = left;
 				}
-				else if (right <= n && arr[right] > arr[cur_idx])
+				if (right <= n && arr[right] > arr[cur_idx])
 				{
 					cur_idx = right;
 				}
@@ -254,7 +284,7 @@ namespace Sort
 				{
 					cur_idx = left;
 				}
-				else if (right <= n && arr[right] < arr[cur_idx])
+				if (right <= n && arr[right] < arr[cur_idx])
 				{
 					cur_idx = right;
 				}
@@ -266,7 +296,7 @@ namespace Sort
 			}
 		}
 		
-		template<typename T, HeapType type>
+		template<typename T, HeapType type = HeapType::UNORDERED>
 		void SetHeap(T* arr, int size)
 		{
 			int max_parent_index = ((size - 1) - 1) / 2;
@@ -275,9 +305,10 @@ namespace Sort
 				Heapify<T, type>(arr, size - 1, i);
 			}
 		}
-		template<typename T, HeapType type>
+		template<typename T, HeapType type = HeapType::UNORDERED>
 		void Sort(T* arr, int size)
 		{
+
 			SetHeap<T, type>(arr, size);
 			for (int i = size - 1; i >= 1; i--)
 			{
